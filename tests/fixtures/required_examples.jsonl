@@ -1,0 +1,20 @@
+{"input": "twenty-five", "status": "resolved", "value": "25", "form": "integer", "kind": "number"}
+{"input": "one hundred and twenty", "status": "resolved", "value": "120", "form": "integer", "kind": "number"}
+{"input": "1.25", "status": "resolved", "value": "5/4", "form": "decimal", "kind": "number"}
+{"input": "minus two and a half", "status": "resolved", "value": "-5/2", "form": "mixed_number", "kind": "number"}
+{"input": "half", "status": "resolved", "value": "1/2", "form": "fraction", "kind": "number"}
+{"input": "a third", "status": "resolved", "value": "1/3", "form": "fraction", "kind": "number"}
+{"input": "three fifths", "status": "resolved", "value": "3/5", "form": "fraction", "kind": "number"}
+{"input": "three over eight", "status": "resolved", "value": "3/8", "form": "fraction", "kind": "number"}
+{"input": "two and a half times", "status": "resolved", "value": "5/2", "form": "mixed_number", "kind": "multiplier"}
+{"input": "twice", "status": "resolved", "value": "2", "form": "integer", "kind": "multiplier"}
+{"input": "seventeen times", "status": "resolved", "value": "17", "form": "integer", "kind": "multiplier"}
+{"input": "fifteen percent", "status": "resolved", "value": "3/20", "form": "integer", "kind": "percentage"}
+{"input": "half a percent", "status": "resolved", "value": "1/200", "form": "fraction", "kind": "percentage"}
+{"input": "third", "expected_kind": "ordinal", "status": "resolved", "value": "3", "form": "ordinal", "kind": "ordinal"}
+{"input": "three over zero", "status": "invalid"}
+{"input": "1.2.3", "status": "invalid"}
+{"input": "twenty and", "status": "invalid"}
+{"input": "double room", "status": "unsupported"}
+{"input": "third row", "status": "unsupported"}
+{"input": "the first half of the year", "status": "unsupported"}

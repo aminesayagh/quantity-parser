@@ -1,0 +1,47 @@
+// Structure only. Word rules (card_word, ord_word, denom_word, ...) are
+// generated from en.py and appended at load time.
+//
+// Cardinal spans are deliberately loose word sequences: the grammar keeps
+// every possible boundary (Earley, explicit ambiguity) and the text2num
+// adapter rejects the subtrees that are not complete cardinals.
+
+start: number | percentage | multiplier | ordinal
+
+number: sign? value
+percentage: sign? value percent
+          | sign? fraction "of"? article percent
+multiplier: value "times"
+          | num_literal "x"
+          | mult_word
+?num_literal: INT -> integer
+            | DEC -> decimal
+ordinal: (cardinal "and"?)? ord_word
+       | ORD_LIT
+
+?value: integer | decimal | fraction | mixed
+
+integer: cardinal | INT
+decimal: DEC
+       | cardinal? "point" digit_word+
+?fraction: integer denom            -> word_fraction
+         | article denom            -> article_fraction
+         | "half"                   -> bare_half
+         | integer over integer     -> ratio
+mixed: integer "and" fraction
+     | INT INT "/" INT              -> digit_mixed
+
+denom: (cardinal "and"?)? denom_word
+cardinal: card_word ("and"? card_word)*
+        | article scale_word ("and"? card_word)*
+
+sign: ("minus" | "negative" | "-") -> neg
+    | ("plus" | "+")               -> pos
+percent: "percent" | "per" "cent" | "%"
+over: "over" | "/"
+article: "a" | "an"
+
+INT: /\d+/
+DEC: /\d*\.\d+/
+ORD_LIT: /\d+(st|nd|rd|th)/
+
+%ignore " "
